@@ -9,23 +9,23 @@ The system is built using Java 17, Java Swing UI, Oracle Database XE, and Jasper
 ## Architecture Overview
 
 ```mermaid
-flowchart TD
-    subgraph Client Layer
-        Welcome[Welcome Login Screen]
-        DoctorPortal[Doctor Portal]
-        SecretaryPortal[Secretary Portal]
-        PatientMgmt[Patient Management]
-        TestsMeds[Tests & Meds Fulfillment]
+graph TD
+    subgraph Client_Layer["Client Layer"]
+        Welcome["Welcome Login Screen"]
+        DoctorPortal["Doctor Portal"]
+        SecretaryPortal["Secretary Portal"]
+        PatientMgmt["Patient Management"]
+        TestsMeds["Tests & Meds Fulfillment"]
     end
 
-    subgraph Data & Business Logic
-        DBConn[DBConnection Utility]
-        OracleDB[(Oracle Database XE)]
+    subgraph Data_Layer["Data & Business Logic"]
+        DBConn["DBConnection Utility"]
+        OracleDB[("Oracle Database XE")]
     end
 
-    subgraph Reporting Engine
-        JasperEngine[JasperReports Engine]
-        PDFReports[PDF Reports Output]
+    subgraph Reporting_Layer["Reporting Engine"]
+        JasperEngine["JasperReports Engine"]
+        PDFReports["PDF Reports Output"]
     end
 
     Welcome --> DoctorPortal
