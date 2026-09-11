@@ -1,0 +1,26 @@
+# Target directory built by Maven
+target/
+*.class
+
+# Maven / Build logs
+*.log
+*.zip
+*.tar.gz
+
+# IDE specific files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+nbproject/private/
+build/
+dist/
+
+# Configuration files with local secrets
+src/main/resources/db.properties
+
+# OS generated files
+.DS_Store
+Thumbs.db

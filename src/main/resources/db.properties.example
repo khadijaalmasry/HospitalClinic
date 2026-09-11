@@ -1,0 +1,4 @@
+# Oracle Database Connection Properties Template
+db.url=jdbc:oracle:thin:@localhost:1522:XE
+db.user=SYSTEM
+db.password=YOUR_ORACLE_PASSWORD_HERE

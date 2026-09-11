@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7b349c2-ad15-4a2e-bb2d-629256c452b8">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ClinicAdapter"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT p.p_name, d.d_name,  v.visit_date, EXTRACT(HOUR FROM v.visit_date) AS visit_hour, EXTRACT(MINUTE FROM v.visit_date) AS visit_minute, i.icd_name
+FROM visit v
+JOIN patient p ON v.p_id = p.p_id
+JOIN doctor d ON v.d_id = d.d_id
+JOIN icd_10 i ON v.icd_code = i.icd_code
+WHERE v.visit_date >= TRUNC(SYSDATE) - 30 AND v.icd_code != '0000'
+ORDER BY v.visit_date DESC]]>
+	</queryString>
+	<field name="P_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="P_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="P_NAME"/>
+	</field>
+	<field name="D_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="D_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="D_NAME"/>
+	</field>
+	<field name="VISIT_DATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="VISIT_DATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="VISIT_DATE"/>
+	</field>
+	<field name="VISIT_HOUR" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="VISIT_HOUR"/>
+		<property name="com.jaspersoft.studio.field.label" value="VISIT_HOUR"/>
+	</field>
+	<field name="VISIT_MINUTE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="VISIT_MINUTE"/>
+		<property name="com.jaspersoft.studio.field.label" value="VISIT_MINUTE"/>
+	</field>
+	<field name="ICD_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ICD_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="ICD_NAME"/>
+	</field>
+	<group name="P_NAME">
+		<groupExpression><![CDATA[$F{P_NAME}]]></groupExpression>
+	</group>
+	<group name="D_NAME">
+		<groupExpression><![CDATA[$F{D_NAME}]]></groupExpression>
+	</group>
+	<group name="VISIT_DATE">
+		<groupExpression><![CDATA[$F{VISIT_DATE}]]></groupExpression>
+	</group>
+	<group name="VISIT_HOUR">
+		<groupExpression><![CDATA[$F{VISIT_HOUR}]]></groupExpression>
+	</group>
+	<group name="VISIT_MINUTE">
+		<groupExpression><![CDATA[$F{VISIT_MINUTE}]]></groupExpression>
+	</group>
+	<group name="ICD_NAME">
+		<groupExpression><![CDATA[$F{ICD_NAME}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="20" width="142" height="46" uuid="7a2e40a2-d7b8-41b8-8c9b-87e0b70de78a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[VISITS]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="10" y="60" width="100" height="20" uuid="61c99b4f-89ed-497b-afcb-54596f555c01"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="0" width="160" height="40" uuid="94c7c056-b9fb-42d5-bb83-42a5b06fcf45"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[???? CLINIC]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="530" height="44" uuid="2eb7c2fa-e2ea-4426-90e4-b47dd3ef7b2c"/>
+				<text><![CDATA[This report displays the information for all the clinic visits over the last 30 days.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="410" y="4" width="140" height="30" backcolor="#CCF5FF" uuid="f797b100-fd4c-4dd2-80a9-85f9a6b4647b"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Diagnosis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="140" y="4" width="150" height="30" backcolor="#CCF5FF" uuid="a940b789-c371-4ac9-9fc5-a0708e43705d"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Patient]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="4" width="130" height="30" backcolor="#CCF5FF" uuid="592ec332-9173-477c-b316-1bd45611db54"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="4" width="120" height="30" backcolor="#CCF5FF" uuid="0f5e6665-a1f1-4239-b79c-196b4dfe0ebc"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Doctor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField evaluationTime="Group" evaluationGroup="VISIT_DATE">
+				<reportElement x="140" y="1" width="150" height="30" uuid="7055fa52-c568-4c91-9ee3-87d550a4e395"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{P_NAME}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="VISIT_DATE">
+				<reportElement x="10" y="1" width="130" height="30" uuid="be47bd7a-b6b4-48a3-adbb-bfd2f5fd0e53"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{VISIT_DATE}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="VISIT_DATE">
+				<reportElement x="290" y="1" width="120" height="30" uuid="12383353-8d09-47fd-a2ed-7810021d95c9"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{D_NAME}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="VISIT_DATE">
+				<reportElement x="410" y="1" width="140" height="30" uuid="e9f29c80-0110-4d6e-8540-844bb75651f4"/>
+				<box>
+					<pen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ICD_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
